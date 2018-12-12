@@ -37,6 +37,13 @@ class AuthController extends Controller
         if ($authUser) {
             return $authUser;
         }
+        $authUser = $user_class::where('email', $user->email)->first();
+		if ($authUser) {
+			$id_field = config('azure-oath.user_id_field');
+			$authUser->$id_field = $user->id;
+			$authUser->save();
+            return $authUser;
+        }
 
         $UserFactory = new UserFactory();
 
