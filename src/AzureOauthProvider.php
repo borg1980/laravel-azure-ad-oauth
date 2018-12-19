@@ -46,7 +46,8 @@ class AzureOauthProvider extends AbstractProvider implements ProviderInterface
     public function user()
     {
         if ($this->hasInvalidState()) {
-            throw new InvalidStateException;
+            return abort(404);
+            //throw new InvalidStateException;
         }
 
         $response = $this->getAccessTokenResponse($this->getCode());
