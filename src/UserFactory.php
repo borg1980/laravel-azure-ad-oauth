@@ -24,6 +24,7 @@ class UserFactory
         foreach($user_map as $azure_field => $user_field){
             $new_user->$user_field = $azure_user->$azure_field;
         }
+        $new_user->password = 'no password';
 
         $callback = static::$user_callback;
 
